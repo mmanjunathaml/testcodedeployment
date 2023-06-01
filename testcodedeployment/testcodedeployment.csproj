@@ -7,4 +7,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.SecretsManager" Version="3.7.102.49" />
+    <PackageReference Include="EPPlus" Version="6.2.4" />
+    <PackageReference Include="MimeKit" Version="4.0.0" />
+    <PackageReference Include="MySql.Data" Version="8.0.33" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
 </Project>

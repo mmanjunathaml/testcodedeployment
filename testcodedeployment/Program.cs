@@ -1,6 +1,4 @@
-﻿
-
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
@@ -43,7 +41,7 @@ namespace EmployeeTaskStatusApp
             ExportToExcel(tasks, excelFilePath);
 
             // Send the report via email
-            SendEmailWithAttachment(excelFilePath);
+           // SendEmailWithAttachment(excelFilePath);
         }
 
         static List<EmployeeTask> RetrieveEmployeeTasks(string connectionString)
@@ -110,46 +108,46 @@ namespace EmployeeTaskStatusApp
             }
         }
 
-        static void SendEmailWithAttachment(string attachmentPath)
-        {
-            // Email configuration
-            string senderEmail = "your_sender_email";
-            string senderName = "Your Name";
-            string recipientEmail = "recipient_email";
-            string subject = "Weekly Report - Employee Task Completion Status";
-            string body = "Please find attached the weekly report.";
+        //static void SendEmailWithAttachment(string attachmentPath)
+        //{
+        //    // Email configuration
+        //    string senderEmail = "your_sender_email";
+        //    string senderName = "Your Name";
+        //    string recipientEmail = "recipient_email";
+        //    string subject = "Weekly Report - Employee Task Completion Status";
+        //    string body = "Please find attached the weekly report.";
 
-            // SMTP server configuration
-            string smtpServer = "smtp.yourdomain.com";
-            int smtpPort = 587;
-            string smtpUsername = "your_smtp_username";
-            string smtpPassword = "your_smtp_password";
+        //    // SMTP server configuration
+        //    string smtpServer = "smtp.yourdomain.com";
+        //    int smtpPort = 587;
+        //    string smtpUsername = "your_smtp_username";
+        //    string smtpPassword = "your_smtp_password";
 
-            // Create a new email message
-            var message = new MimeMessage();
-            message.From.Add(new MailboxAddress(senderName, senderEmail));
-            message.To.Add(new MailboxAddress("", recipientEmail));
-            message.Subject = subject;
+        //    // Create a new email message
+        //    var message = new MimeMessage();
+        //    message.From.Add(new MailboxAddress(senderName, senderEmail));
+        //    message.To.Add(new MailboxAddress("", recipientEmail));
+        //    message.Subject = subject;
 
-            // Create the body part of the email
-            var bodyBuilder = new BodyBuilder();
-            bodyBuilder.TextBody = body;
+        //    // Create the body part of the email
+        //    var bodyBuilder = new BodyBuilder();
+        //    bodyBuilder.TextBody = body;
 
-            // Attach the Excel file to the email
-            bodyBuilder.Attachments.Add(attachmentPath);
+        //    // Attach the Excel file to the email
+        //    bodyBuilder.Attachments.Add(attachmentPath);
 
-            // Set the body of the email
-            message.Body = bodyBuilder.ToMessageBody();
+        //    // Set the body of the email
+        //    message.Body = bodyBuilder.ToMessageBody();
 
-            // Send the email
-            using (var client = new SmtpClient())
-            {
-                client.Connect(smtpServer, smtpPort);
-                client.Authenticate(smtpUsername, smtpPassword);
-                client.Send(message);
-                client.Disconnect(true);
-            }
-        }
+        //    // Send the email
+        //    using (var client = new SmtpClient())
+        //    {
+        //        client.Connect(smtpServer, smtpPort);
+        //        client.Authenticate(smtpUsername, smtpPassword);
+        //        client.Send(message);
+        //        client.Disconnect(true);
+        //    }
+        //}
 
         static string RetrieveConnectionStringFromSecretsManager(string secretName, string region)
         {
